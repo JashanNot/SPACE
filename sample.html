@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Management Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input[type="text"], input[type="password"], input[type="file"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .files {
+            margin-top: 1rem;
+        }
+        .file-item {
+            background: #f9f9f9;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>File Management Website</h1>
+    </header>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <h2>Upload File</h2>
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="file">Select File</label>
+                <input type="file" id="file" required>
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+
+        <h2>Your Files</h2>
+        <div class="files" id="filesList">
+            <!-- Uploaded files will appear here -->
+        </div>
+    </div>
+
+    <script>
+        // Handle Login Form
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Simple validation for demo purposes
+            if (username === 'admin' && password === '1234') {
+                alert('Login successful!');
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+
+        // Handle File Upload
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('file');
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const filesList = document.getElementById('filesList');
+
+                // Create a new file item element
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.textContent = file.name;
+
+                // Append the file item to the files list
+                filesList.appendChild(fileItem);
+
+                // Clear the file input
+                fileInput.value = '';
+
+                alert('File uploaded successfully!');
+            } else {
+                alert('Please select a file to upload.');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
